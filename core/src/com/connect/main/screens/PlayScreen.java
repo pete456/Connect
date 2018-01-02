@@ -26,7 +26,10 @@ public class PlayScreen extends AbstractScreen {
     @Override
     public void show()
     {
-
+        for(int i=0; i<connect.column.length; i++)
+        {
+            stage.addActor(connect.column[i]);
+        }
     }
 
     @Override
@@ -39,6 +42,13 @@ public class PlayScreen extends AbstractScreen {
     public void render(float delta){
         super.render(delta);
         stage.draw();
+        connect.batch.begin();
+        if(connect.column[0].getIfOver())
+        {
+            connect.font.draw(connect.batch,"Game Over!",700,200);
+            connect.font.draw(connect.batch,"The winner is player "+connect.column[0].getWinner(),700,210);
+        }
+        connect.batch.end();
     }
 
     @Override
